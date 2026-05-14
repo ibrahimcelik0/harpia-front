@@ -12,7 +12,7 @@ export default function PhoneStep({ onSend }: PhoneStepProps) {
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     if (!phone.trim()) return;
     setLoading(true);
@@ -34,7 +34,7 @@ export default function PhoneStep({ onSend }: PhoneStepProps) {
           type="tel"
           placeholder="+90 5__ ___ __ __"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) => setPhone(e.target.value.replace(/[^\d+\s\-().]/g, ""))}
           className="rounded-xl border-border bg-background text-sm"
           required
         />
